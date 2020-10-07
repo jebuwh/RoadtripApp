@@ -31,18 +31,28 @@
 
             var coord = new Array();
 
-            stadiums.forEach(object => coord.push(new google.maps.LatLng(stadiums["geoLat"], stadiums["geoLong"])));
+            stadiums.forEach(object => coord.push(new google.maps.LatLng(object["geoLat"], object["geoLong"])));
 
-            console.log(stadiums["geoLat"]);
-           
+            console.log(coord[0]);
 
-           var marker = new google.maps.Marker({
+            var marker = "";
+
+            stadiums.forEach(object =>
+
+                new google.maps.Marker({
+                    position: new google.maps.LatLng(object["geoLat"], object["geoLong"]),
+                    label: object["name"]
+
+                }).setMap(map));
+
+
+           @*var marker = new google.maps.Marker({
                 position: stadiumloc,
 
-            });
+            });*@
             
 
-                marker.setMap(map);
+                @*marker.setMap(map);*@
             
 
 

@@ -11,16 +11,19 @@ namespace RoadtripApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IStadiumRepository repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IStadiumRepository repo)
         {
-            _logger = logger;
+            this.repo = repo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Stadiums = repo.GetAllStadiums();
+            var stadiums = repo.GetAllStadiums();
+
+            return View(stadiums);
         }
 
         public IActionResult Stats()

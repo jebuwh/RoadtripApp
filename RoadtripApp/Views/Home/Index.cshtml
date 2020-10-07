@@ -2,7 +2,57 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model IEnumerable<Stadium>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXR3q9ASeXkMBZB33Hu9GqJHx0gxESJAs"></script>
 <div class="text-center">
     <h1 class="display-4">Baseball Roadtrip</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>
+       
+        <div id="mapDiv" style="width:100%;height:500px;"></div>
+
+        <script type="text/javascript">
+
+
+            var stadiumloc = new google.maps.LatLng(38.564484, -96.1145333);
+            var center = new google.maps.LatLng(38.564484, -96.1145333)
+
+            var mapOptions = {
+                center: center,
+                zoom: 5,
+                minZoom: 1,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+
+            var map = new google.maps.Map(document.getElementById("mapDiv"), mapOptions);
+
+            var stadiums = @Html.Raw(Json.Serialize(Model));
+
+            var coord = new Array();
+
+            stadiums.forEach(object => coord.push(new google.maps.LatLng(stadiums["geoLat"], stadiums["geoLong"])));
+
+            console.log(stadiums["geoLat"]);
+           
+
+           var marker = new google.maps.Marker({
+                position: stadiumloc,
+
+            });
+            
+
+                marker.setMap(map);
+            
+
+
+
+                
+
+        </script>
+    </p>
+
+
+
+
 </div>

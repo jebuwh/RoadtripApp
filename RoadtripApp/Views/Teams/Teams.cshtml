@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Teams";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model IEnumerable<Team>
+
+<h2>MLB Teams</h2>
+<table class="table">
+    <tr>
+        <th>Team</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Division</th>
+        <th>League</th>
+        <th>Logo</th>
+        <th>Primary Color</th>
+    </tr>
+
+
+
+    @foreach (var team in Model)
+    {
+
+         <tr>
+                <td>@team.Key</td>
+                <td>@team.Name</td>
+                <td>@team.City</td>
+                <td>@team.Division</td>
+                <td>@team.League</td>
+                <td><img src="@team.Logo" alt="Team Logo" width="176" height="120"></td>
+                <td bgcolor ="@team.PrimaryColor">@team.PrimaryColor;"</td>
+            </tr>
+        
+
+    }
+</table>

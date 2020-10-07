@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "MLB News";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model IEnumerable<News>
+
+<div class="container">
+    <div class="row ">
+
+        @foreach (var news in Model)
+        {
+            <div class="col-sm-4 ">
+                <div class="card-deck shadow p-3 mb-5 bg-white rounded">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">"@news.Title"</h2>
+                            <h6 class="card-subtitle mb-2 text-muted">"@news.TimeAgo"</h6>
+                            <p class="card-text">"@news.Content</p>
+                            <a href="@news.NewsURL" class="card-link">RotoBaller Source</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

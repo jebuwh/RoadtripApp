@@ -113,6 +113,23 @@ namespace RoadtripApp
             }
             return teams;
         }
+        public IEnumerable<Players> GetAllPlayers()
+        {
+            var client = new HttpClient();
+
+            //team key var for api
+            
+            var boxscoreURL = $"https://api.sportsdata.io/v3/mlb/scores/json/Players/LAD?key=ab95e23a65c14b37bc7dea6950da78ec";
+
+            var response = client.GetStringAsync(boxscoreURL).Result;
+
+
+            var answer = JArray.Parse(response);
+
+            var players = new List<Players>();
+
+            return players;
+        }
 
 
 

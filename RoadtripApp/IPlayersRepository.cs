@@ -1,16 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RoadtripApp
 {
-    public interface ITeamRepository
+    public interface IPlayersRepository
     {
-        public IEnumerable<Team> GetAllTeams();
-
         public IEnumerable<Players> GetAllPlayers();
-        
     }
 }

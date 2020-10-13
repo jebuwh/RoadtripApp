@@ -4,9 +4,10 @@
 
 @model IEnumerable<Stadium>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXR3q9ASeXkMBZB33Hu9GqJHx0gxESJAs"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyPFaB01zhEGl4WkY6r22qQMS6YjxARHg"></script>
 <div class="text-center">
-    <h1 class="display-4">Baseball Roadtrip</h1>
+    <h1>Baseball Roadtrip0</h1>
     <p>
        
         <div id="mapDiv" style="width:100%;height:500px;"></div>
@@ -33,8 +34,6 @@
 
             stadiums.forEach(object => coord.push(new google.maps.LatLng(object["geoLat"], object["geoLong"])));
 
-            console.log(coord[0]);
-
             var marker = "";
 
             stadiums.forEach(object =>
@@ -45,23 +44,8 @@
 
                 }).setMap(map));
 
-
-           @*var marker = new google.maps.Marker({
-                position: stadiumloc,
-
-            });*@
-            
-
-                @*marker.setMap(map);*@
-            
-
-
-
-                
-
-        </script>
+         </script>
     </p>
-
 
 
 

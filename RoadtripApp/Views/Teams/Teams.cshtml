@@ -1,11 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Teams";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
+<h1>Teams7</h1>
 
 @model IEnumerable<Team>
 
-<h2>MLB Teams</h2>
+
 <table class="table">
     <tr>
         <th>Team</th>
@@ -23,13 +21,13 @@
     {
 
          <tr>
-                <td>@team.Key</td>
+             <td><a href=/Teams/ViewPlayers/@team.Key>@team.Key</a></td>
                 <td>@team.Name</td>
                 <td>@team.City</td>
                 <td>@team.Division</td>
                 <td>@team.League</td>
                 <td><img src="@team.Logo" alt="Team Logo" width="176" height="120"></td>
-                <td bgcolor ="@team.PrimaryColor">@team.PrimaryColor;"</td>
+                <td bgcolor="@team.PrimaryColor">@team.PrimaryColor;"</td>
             </tr>
         
 

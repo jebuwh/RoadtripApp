@@ -19,17 +19,17 @@
 
     @foreach (var team in Model)
     {
-
-         <tr>
-             <td><a href=/Teams/ViewPlayers/@team.Key>@team.Key</a></td>
-                <td>@team.Name</td>
-                <td>@team.City</td>
-                <td>@team.Division</td>
-                <td>@team.League</td>
-                <td><img src="@team.Logo" alt="Team Logo" width="176" height="120"></td>
-                <td bgcolor="@team.PrimaryColor">@team.PrimaryColor;"</td>
-            </tr>
         
+        <tr>
+            <td><a href=/Teams/ViewPlayers>@team.Key</a></td>
+            <td>@team.Name</td>
+            <td>@team.City</td>
+            <td>@team.Division</td>
+            <td>@team.League</td>
+            <td><img src="@team.Logo" alt="Team Logo" width="176" height="120"></td>
+            <td bgcolor="@team.PrimaryColor">@team.PrimaryColor;"</td>
+        </tr>
+
 
     }
 </table>

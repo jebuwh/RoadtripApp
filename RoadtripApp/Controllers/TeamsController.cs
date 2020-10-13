@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using System.Web;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace RoadtripApp.Controllers
 {
@@ -16,15 +11,19 @@ namespace RoadtripApp.Controllers
         {
             this.repo = repo;
             this._playerRepo = _playerRepo;
+           
         }
 
         public IActionResult Teams()
         {
             var teams = repo.GetAllTeams();
 
-            var player = _playerRepo.GetAllPlayers();
-
-            return View(teams);
+             return View(teams);
+        }
+        public IActionResult ViewPlayers()
+        {
+            var players = _playerRepo.GetAllPlayers();
+            return View(players);
         }
         
     }

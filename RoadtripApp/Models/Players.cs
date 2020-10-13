@@ -14,5 +14,6 @@ namespace RoadtripApp
         public string LastName { get; set; }
         public string BatHand { get; set; }
         public string ThrowHand { get; set; }
+        public string Photo { get; set; }
     }
 }

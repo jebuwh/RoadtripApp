@@ -9,8 +9,6 @@ namespace RoadtripApp
     public interface ITeamRepository
     {
         public IEnumerable<Team> GetAllTeams();
-
-        public IEnumerable<Players> GetAllPlayers();
         
     }
 }

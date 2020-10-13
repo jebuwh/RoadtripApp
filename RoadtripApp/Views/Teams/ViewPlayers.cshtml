@@ -1,1 +1,34 @@
-﻿
+﻿<h1>Players7</h1>
+
+@model IEnumerable<Players>
+
+
+<table class="table">
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Bat Hand</th>
+        <th>Throw Hand</th>
+        <th>Photo</th>
+    </tr>
+
+
+
+    @foreach (var player in Model)
+    {
+        if (player.Status == "Active")
+        {
+        <tr>
+            <td>@player.Jersey</td>
+            <td>@player.LastName, @player.FirstName</td>
+            <td>@player.Position</td>
+            <td>@player.BatHand</td>
+            <td>@player.ThrowHand</td>
+            <td><img src="@player.Photo" alt="Player Photo"></td>
+            
+        </tr>
+        }
+
+    }
+</table>

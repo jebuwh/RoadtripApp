@@ -12,16 +12,20 @@ namespace RoadtripApp.Controllers
     public class HomeController : Controller
     {
         private readonly IStadiumRepository repo;
+        public string key;
 
         public HomeController(IStadiumRepository repo)
         {
             this.repo = repo;
+            key = System.IO.File.ReadAllText("../RoadtripApp/googleKey.txt");
         }
 
         public IActionResult Index()
         {
             ViewBag.Stadiums = repo.GetAllStadiums();
             var stadiums = repo.GetAllStadiums();
+
+            ViewData["key"] = key;
 
             return View(stadiums);
         }

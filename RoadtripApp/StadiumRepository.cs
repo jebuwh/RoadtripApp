@@ -15,7 +15,9 @@ namespace RoadtripApp
         {
             var client = new HttpClient();
 
-            var stadiumURL = "https://api.sportsdata.io/v3/mlb/scores/json/Stadiums?key=ab95e23a65c14b37bc7dea6950da78ec";
+            var key = System.IO.File.ReadAllText("../RoadtripApp/APIKey.txt");
+
+            var stadiumURL = $"https://api.sportsdata.io/v3/mlb/scores/json/Stadiums?key={key}";
 
             var response = client.GetStringAsync(stadiumURL).Result;
 

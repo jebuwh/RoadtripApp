@@ -13,7 +13,9 @@ namespace RoadtripApp
         {
             var client = new HttpClient();
 
-            var teamURL = "https://api.sportsdata.io/v3/mlb/scores/json/teams?key=ab95e23a65c14b37bc7dea6950da78ec";
+            var key = System.IO.File.ReadAllText("../RoadtripApp/APIKey.txt");
+
+            var teamURL = $"https://api.sportsdata.io/v3/mlb/scores/json/teams?key={key}";
 
             var response = client.GetStringAsync(teamURL).Result;
 
@@ -115,7 +117,30 @@ namespace RoadtripApp
         }
        
 
+        public static List<Team> GetKeys()
+        {
+            var client = new HttpClient();
 
+            var key = System.IO.File.ReadAllText("../RoadtripApp/APIKey.txt");
+
+            var teamURL = $"https://api.sportsdata.io/v3/mlb/scores/json/teams?key={key}";
+
+            var response = client.GetStringAsync(teamURL).Result;
+
+
+            var answer = JArray.Parse(response);
+
+            var keys = new List<Team>();
+
+            var teamKey = new Team();
+
+            foreach (var item in answer)
+            {
+                teamKey.Key = (string)item["Key"];
+                keys.Add(teamKey);
+            }
+            return keys;
+        }
 
 
 

@@ -3,22 +3,118 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace RoadtripApp
 {
     public class PlayersRepository : IPlayersRepository
     {
+
         public IEnumerable<Players> GetAllPlayers()
         {
+            var players = new List<Players>();
 
-            var client = new HttpClient();
+            foreach (var item in TeamRepository.GetKeys())
+            {
+                var key = item.Key;
 
-            Team team = new Team();
+                var client = new HttpClient();
+
+                var keyapi = System.IO.File.ReadAllText("../RoadtripApp/APIKey.txt");
+
+                var boxscoreURL = $"https://api.sportsdata.io/v3/mlb/scores/json/Players/{key}?key={keyapi}";
+
+                Console.WriteLine(boxscoreURL);
+
+                var response = client.GetStringAsync(boxscoreURL).Result;
 
 
+                var answer = JArray.Parse(response);
 
-            var boxscoreURL = $"https://api.sportsdata.io/v3/mlb/scores/json/Players/LAD?key=ab95e23a65c14b37bc7dea6950da78ec";
+                
+
+                foreach (var it in answer)
+                {
+                    var player = new Players();
+
+                    if (IsNullOrEmpty(it["Status"]))
+                    {
+                        player.Status = "0";
+                    }
+                    else
+                    {
+                        player.Status = (string)it["Status"];
+                    }
+                    if (IsNullOrEmpty(it["Jersey"]))
+                    {
+                        player.Jersey = 0;
+                    }
+                    else
+                    {
+                        player.Jersey = (int)it["Jersey"];
+                    }
+                    if (IsNullOrEmpty(it["Position"]))
+                    {
+                        player.Position = "0";
+                    }
+                    else
+                    {
+                        player.Position = (string)it["Position"];
+                    }
+                    if (IsNullOrEmpty(it["FirstName"]))
+                    {
+                        player.FirstName = "0";
+                    }
+                    else
+                    {
+                        player.FirstName = (string)it["FirstName"];
+                    }
+                    if (IsNullOrEmpty(it["LastName"]))
+                    {
+                        player.LastName = "0";
+                    }
+                    else
+                    {
+                        player.LastName = (string)it["LastName"];
+                    }
+                    if (IsNullOrEmpty(it["BatHand"]))
+                    {
+                        player.BatHand = "0";
+                    }
+                    else
+                    {
+                        player.BatHand = (string)it["BatHand"];
+                    }
+                    if (IsNullOrEmpty(it["ThrowHand"]))
+                    {
+                        player.ThrowHand = "0";
+                    }
+                    else
+                    {
+                        player.ThrowHand = (string)it["ThrowHand"];
+                    }
+                    if (IsNullOrEmpty(it["PhotoUrl"]))
+                    {
+                        player.Photo = "0";
+                    }
+                    else
+                    {
+                        player.Photo = (string)it["PhotoUrl"];
+                    }
+
+                    players.Add(player);
+
+                }
+
+                
+            }
+            Console.WriteLine(players);
+            return players;
+        }
+            /*var client = new HttpClient();
+
+            var boxscoreURL = $"https://api.sportsdata.io/v3/mlb/scores/json/Players/{item}?key=ab95e23a65c14b37bc7dea6950da78ec";
 
             Console.WriteLine(boxscoreURL);
 
@@ -103,7 +199,7 @@ namespace RoadtripApp
             }
 
             return players;
-        }
+        }*/
 
         public static bool IsNullOrEmpty(JToken token)
         {

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace RoadtripApp
         {
             var client = new HttpClient();
 
-            var newsAPIURL = "https://api.sportsdata.io/v3/mlb/scores/json/News?key=ab95e23a65c14b37bc7dea6950da78ec";
+            var key = System.IO.File.ReadAllText("../RoadtripApp/APIKey.txt");
+
+            var newsAPIURL = $"https://api.sportsdata.io/v3/mlb/scores/json/News?key={key}";
 
             var response = client.GetStringAsync(newsAPIURL).Result;
 
